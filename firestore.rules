@@ -1,0 +1,32 @@
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    //temporary rule for development
+    match /{document=**} {
+      allow read, write;
+    }
+
+    // all users can read posts
+    match /posts/{document=**} {
+      allow read;
+    }
+
+    // only authorized users can create new posts
+
+
+    // only creators of posts and admins can edit posts
+
+
+    // only authorized users can upvote posts
+
+
+    // only authorized users can comment posts
+
+
+    // only the user can change its profile
+    match /users/{userId} {
+      allow write: if request.auth.uid == userId;
+    }
+
+  }
+}

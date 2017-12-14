@@ -1,0 +1,25 @@
+.dropzone {
+
+  margin: 0em;
+  -webkit-appearance: none;
+  font-size: 1em;
+  box-shadow: 0em 0em 0em 0em transparent inset;
+  display: block;
+  width: 100%;
+  background: #FFFFFF;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.28571429rem;
+  box-shadow: 0em 0em 0em 0em transparent inset;
+  padding: 0.62em 1em;
+  -webkit-transition: color 0.1s ease, border-color 0.1s ease;
+  transition: color 0.1s ease, border-color 0.1s ease;
+  color: rgba(0, 0, 0, 0.25);
+  text-align: center;
+  vertical-align: center;
+}
+
+
+
+.dropzoneActive {
+  tap-highlight-color: rgba(255, 255, 255, 0);
+}
