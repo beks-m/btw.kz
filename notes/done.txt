@@ -1,0 +1,107 @@
+- Delete unused libraries
+- Do something with big CSS
+- Code splitting (lazy loading) for faster loads (Webpack require.ensure() and System.import())
+- Extract Firebase and Semantic into separate chunk
+- PRPL (Push content http2)
+- Long term caching of static files (html, js, css)
+https://medium.com/@addyosmani/progressive-web-apps-with-react-js-part-2-page-load-performance-33b932d97cf2
+- Critical Rendering Path
+https://developers.google.com/web/fundamentals/performance/critical-rendering-path/
+- Produce logo and change in meta, facebook app
+- Tweak caching images
+- Track how deeply users go on homepage by date
+- Track only /posts excluding /post
+- learn if user is new or old, if new populate /users with data and separate registration/login events
+- Multiple cities (almaty: true, astana: false?)
+- Define specific url for cities?
+- Cache city choice forever
+- handle changing cities in DefaultStore (update posts)
+- Implement type filter
+- Implement Load more posts and include GA Event
+- Tags for iOS adding to homescreen
+- Firestore index
+- Check empty posts shown when actually there are posts (was due to getting data from cache)
+- Do not move posts around by upvote count, because it may go to top when user already scrolled the top (now they are fetched only once)
+- Fix not showing earlier days if today/yesterday is empty
+- Fix upvotes updating
+- Integrate algolia search
+- Enable search on navbar
+- Enable cloud functions for search wit algolia
+- Generate/Update sitemap when post added/modified/deleted (use Verge example)
+- learn about firebase.config() and implement it also on frontend (not possible on client side)
+- Track how deeply users go on homepage by pressing Load more
+- Track upvotes clicks
+- Track comments
+- Track homepage categories clicks
+- Track city
+- get post upvotes for list of who upvoted and fix getIfUserUpvotedPosts to include all posts
+- Upvotes adding and updating upvoteCount not intuitive
+- this.state.posts for SinglePostPage
+- Actions - add to users comments
+- Change react router :id to :category
+- Text area make text formatted (bold/italic/lists buttons)
+- Text area dynamic height
+- Links - fix adding on enter
+- Tags suggestions through search (add function, add algolia index)
+- Add help buttons on each field
+- Add warning message when user did not complete all fields
+- Add error when user did not complete required fields
+- Terms
+- I am a maker of this product
+- Hunter/Maker comment
+- Add cities
+- Warn user to write description neutrally, but he can praise it in special hunter comment
+- Popup - make not text but html with Interweave
+- Header as dropdown to choose post type
+- For events add dates
+- For events and places add address with map
+- Change Location segment into input to show error
+- Scroll to error input on Далее или Отправить
+- Add post to Firebase
+- Beautify id to match name
+- Mark as not moderated
+- Send upload progress on modal
+- Choose publishing today or tomorrow
+- upload image links also to btw.kz
+- Add 3 image sizes - thumbnail for postlist, search and original
+- add loading to add from link
+- check if this is image
+- youtube
+- fix deleting media
+- fix upload loop
+- Add maker
+- change this.props.params.match.type to this.state.type
+- extract strings in NewPostPage into separate file
+- Redo the newpostpage to support moderation
+- date
+- Publish button
+- do not allow city radio to choose both at same time
+- Posts moderation
+- Add moderator as editor checkbox
+- Check postponed publication
+- fix tag loader spinning
+- fix algolia results on production
+- Add hunter's comment as usual comment
+- Create imaginary hunters
+- Remove post from unmoderated
+- After moderation of posts - Save in posts, events, tags, promo, users, sitemaps, tags
+- Check if posts are added to sitemaps
+- Make tags clickable on homepage
+- Add category
+- Make tags clickable
+- For events add dates
+- For events and places add address with map into image tabs
+- Move upvote button to the right
+- Image not fluid when small
+- Add makers
+- fix production styling of description field
+- Update info from Facebook (name, photo)
+- Add color and icons to types
+- Responsive - share buttons
+- Responsive - move comments
+- Limit image heights
+- People who upvote - limit number, shuffle every time, modal to show all, popup to display name, onClick - open profile
+- Implement share buttons, whatsapp, telegram
+- Microlink bug
+- Create dummy photos with different resolutions
+- Update add sample post

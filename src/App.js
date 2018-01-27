@@ -1,104 +1,110 @@
 import React, { Component } from 'react';
-import ReactGA from 'react-ga';
+import Loadable from 'react-loadable';
 import './App.css';
-import Homepage from './components/pages/Homepage';
-import connectToStores from 'alt-utils/lib/connectToStores';
-import DefaultStore from './stores/DefaultStore';
-import Actions from './actions/Actions';
-import { Route, BrowserRouter, Link } from 'react-router-dom';
-import SinglePostPage from './components/pages/SinglePostPage';
-import AboutPage from './components/pages/AboutPage';
-import NewPostPage from './components/pages/NewPostPage';
-import ProfilePage from './components/pages/ProfilePage';
-import { Menu, Input, Container, Image, Icon, Dropdown, Modal, Button } from 'semantic-ui-react';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import Helmet from 'react-helmet';
 
-@connectToStores
+const Homepage = Loadable({
+  loader: () => import('./components/pages/Homepage'),
+  loading() {
+    // return <Loader active inline='centered' />
+    return null
+  }
+});
+const SinglePostPage = Loadable({
+  loader: () => import('./components/pages/SinglePostPage'),
+  loading() {
+    return null
+  }
+});
+const AboutPage = Loadable({
+  loader: () => import('./components/pages/AboutPage'),
+  loading() {
+    return null
+  }
+});
+const NewPostPage = Loadable({
+  loader: () => import('./components/pages/NewPostPage'),
+  loading() {
+    return null
+  }
+});
+const ProfilePage = Loadable({
+  loader: () => import('./components/pages/ProfilePage'),
+  loading() {
+    return null
+  }
+});
+const SearchPage = Loadable({
+  loader: () => import('./components/pages/SearchPage'),
+  loading() {
+    return null
+  }
+});
+const CollectionPage = Loadable({
+  loader: () => import('./components/pages/CollectionPage'),
+  loading() {
+    return null
+  }
+});
+const TermsPage = Loadable({
+  loader: () => import('./components/pages/TermsPage'),
+  loading() {
+    return null
+  }
+});
+const AdminPage = Loadable({
+  loader: () => import('./components/pages/AdminPage'),
+  loading() {
+    return null
+  }
+});
+const AdminNewPostModerationPage = Loadable({
+  loader: () => import('./components/pages/AdminNewPostModerationPage'),
+  loading() {
+    return null
+  }
+});
+const NotFoundPage = Loadable({
+  loader: () => import('./components/pages/NotFoundPage'),
+  loading() {
+    return null
+  }
+});
+const NavigationBar = Loadable({
+  loader: () => import('./components/navigationBar/NavigationBar'),
+  loading() {
+    return null
+  }
+});
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-    Actions.initSession();
-    // Add your tracking ID created from https://analytics.google.com/analytics/web/#home/
-    ReactGA.initialize('UA-110404917-1');
-    // This just needs to be called once since we have no routes in this case.
-    ReactGA.pageview(window.location.pathname);
-  }
-
-  static getStores(props) {
-    return [DefaultStore];
-  }
-
-  static getPropsFromStores(props) {
-    return DefaultStore.getState();
-  }
-
-  renderProfileOrLoginMenuItem() {
-    if (this.props.user) {
-      return (
-        <Dropdown trigger={<Image src={this.props.user.photoURL} size='mini' circular />} item>
-          <Dropdown.Menu>
-            <Dropdown.Item as={Link} to='/profile'>Профиль</Dropdown.Item>
-            <Dropdown.Item onClick={function(){Actions.logout()}}>Выйти</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      )
-    } else {
-      return (
-        <Modal trigger={<Menu.Item>Войти/Регистрация</Menu.Item>} dimmer='blurring'>
-          <Modal.Header>Авторизация</Modal.Header>
-          <Modal.Content>
-            Регистрация и авторизация проходят через Facebook
-          </Modal.Content>
-          <Modal.Actions>
-            <Button color='facebook' onClick={function(){Actions.login()}}>
-              <Icon name='facebook' /> Войти через Facebook
-            </Button>
-          </Modal.Actions>
-        </Modal>
-      )
-    }
-  }
-
-  renderNewPostMenuItem() {
-    if (this.props.user) {
-      return (
-        <Dropdown trigger={<div><Icon name='add' size='large'/>Добавить</div>} item>
-          <Dropdown.Menu>
-            <Dropdown.Item icon='calendar' text='Ивент' as={Link} to='/newPost' />
-            <Dropdown.Item icon='map signs' text='Место' as={Link} to='/newPost' />
-            <Dropdown.Item icon='rocket' text='Продукт' as={Link} to='/newPost' />
-            <Dropdown.Item icon='percent' text='Акция' as={Link} to='/newPost' />
-            <Dropdown.Item icon='music' text='Музыка' as={Link} to='/newPost' />
-            <Dropdown.Item icon='film' text='Кино' as={Link} to='/newPost' />
-            <Dropdown.Item icon='newspaper' text='Событие' as={Link} to='/newPost' />
-          </Dropdown.Menu>
-        </Dropdown>
-      )
-    }
-  }
-
   render() {
     return (
       <BrowserRouter>
-        <section>
+        <div>
+          <Helmet bodyAttributes={{style: 'background-color : #f9f9f9'}}/>
           <br />
-          <Container>
-            <Menu stackable>
-              <Menu.Item header as={Link} to='/'><Icon name='coffee' fitted/>btw.kz</Menu.Item>
-              <Menu.Item as={Link} to='/about'>О проекте</Menu.Item>
-              <Menu.Menu position='right'>
-                <Menu.Item><Input className='icon' icon='search' placeholder='Искать...' /></Menu.Item>
-                {this.renderNewPostMenuItem()}
-                {this.renderProfileOrLoginMenuItem()}
-              </Menu.Menu>
-            </Menu>
-          </Container>
+          <NavigationBar />
           <br />
-          <Route exact path='/' component={Homepage}/>
-          <Route path='/about' component={AboutPage}/>
-          <Route path='/profile' component={ProfilePage}/>
-          <Route path='/newPost' component={NewPostPage}/>
-          <Route path='/post/:id' component={SinglePostPage}/>
-        </section>
+          <Switch>
+            <Route exact path='/' component={Homepage}/>
+            <Route path='/about' component={AboutPage}/>
+            <Route path='/profile' component={ProfilePage}/>
+            <Route path='/new/:type' component={NewPostPage}/>
+            <Route path='/post/:date/:id' component={SinglePostPage}/>
+            <Route path='/posts/:date/:id' component={SinglePostPage}/>
+            <Route path='/tags/:id' component={CollectionPage}/>
+            <Route path='/collections/:id' component={CollectionPage}/>
+            <Route path='/search' component={SearchPage}/>
+            <Route path='/users/:id' component={ProfilePage}/>
+            <Route path='/collections/:id' component={CollectionPage}/>
+            <Route path='/terms' component={TermsPage}/>
+            <Route exact path='/admin' component={AdminPage}/>
+            <Route path='/admin/unmoderatedPost/:id' component={AdminNewPostModerationPage}/>
+            <Route path='/' component={NotFoundPage}/>
+          </Switch>
+        </div>
       </BrowserRouter>
     );
   }

@@ -6,10 +6,25 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "/img/logo-square-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/logo-square-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/logo-square-1024.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
     }
   ],
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#f9f9f9"
 }

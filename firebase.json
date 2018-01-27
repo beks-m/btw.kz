@@ -1,7 +1,4 @@
 {
-  "database": {
-    "rules": "database.rules.json"
-  },
   "firestore": {
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
@@ -13,7 +10,33 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+     {
+       "source": "/",
+       "headers": [{"key": "Link", "value": "<static/js/main.js>;rel=preload;as=script;nopush,<static/js/used-twice-main.chunk.js>;rel=preload;as=script;nopush,<static/css/main.css>;rel=preload;as=style;nopush,<static/js/3.chunk.js>;rel=preload;as=script;nopush,<static/js/6.chunk.js>;rel=preload;as=script;nopush,<static/media/lato-v14-latin-regular.woff2>;rel=preload;as=font;nopush,<static/media/icons.woff2>;rel=preload;as=font;nopush,<img/banner.jpg>;rel=preload;as=image;nopush, <https://www.google-analytics.com/analytics.js>;rel=preload;as=script;nopush"}]
+     },
+     {
+       "source": "/post/**",
+       "headers": [{"key": "Link", "value": "<https://btw.kz/static/js/main.js>;rel=preload;as=script;nopush,<https://btw.kz/static/js/used-twice-main.chunk.js>;rel=preload;as=script;nopush,<https://btw.kz/static/css/main.css>;rel=preload;as=style;nopush,<https://btw.kz/static/media/lato-v14-latin-regular.woff2>;rel=preload;as=font;nopush,<https://btw.kz/static/media/icons.woff2>;rel=preload;as=font;nopush,<https://www.google-analytics.com/analytics.js>;rel=preload;as=script;nopush"}]
+     },
+     {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=360000"
+      }]
+     }
+    ],
     "rewrites": [ {
+      "source": "/amp/posts/**",
+      "function": "amp"
+    }, {
+      "source": "/posts/**",
+      "function": "post"
+    }, {
+      "source": "/sitemap*",
+      "function": "sitemap"
+    }, {
       "source": "**",
       "destination": "/index.html"
     } ]

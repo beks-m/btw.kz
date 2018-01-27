@@ -11,7 +11,10 @@ service cloud.firestore {
       allow read;
     }
 
-    // only authorized users can create new posts
+    // only admins can write to posts
+
+
+    // only authorized users can write to unmoderatedPosts
 
 
     // only creators of posts and admins can edit posts
@@ -27,6 +30,11 @@ service cloud.firestore {
     match /users/{userId} {
       allow write: if request.auth.uid == userId;
     }
+
+    // all users can read each other's profiles
+
+
+    // no one can read and write sitemap
 
   }
 }

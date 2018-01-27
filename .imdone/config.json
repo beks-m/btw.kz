@@ -18,12 +18,22 @@
       "IDEA",
       "NOTE",
       "REVIEW",
-      "TODO"
+      "TODO",
+      "INPROGRESS",
+      "DONE"
     ]
   },
   "lists": [
     {
       "name": "TODO",
+      "hidden": false
+    },
+    {
+      "name": "inProgress",
+      "hidden": false
+    },
+    {
+      "name": "Done",
       "hidden": false
     }
   ],
