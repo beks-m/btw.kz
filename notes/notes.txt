@@ -1,103 +1,108 @@
-Architecture
-- Read/write permissions on database
+Architecture & Common
+- Read/write permissions on database - post update only on upvoteCount and commentCount
 - Google ads
-- When build is updated on hosting - client side does not know about it
-- When deleting posts - remove from tags, users, search, sitemap
-- Change font so that russian and english look the same Source Sans Pro,Sans-Serif
+- Footer as 3d вбитое btw.kz
+- Footer links on sidebar
+- On login notify user that login is success or failed
+- Промежуточные страницы - /new, /tags, /posts
+- Единорожки на лайках рандомно + в первый раз обязательно
+- На мобильной версии сделать свайпы
+
 
 Potential problems
 - Cloud function onUpdate triggered every time post is upvoted (how will it behave when triggered every 2 seconds?)
 - Switch to Redux instead of Alt for true Flux
 - React-rte text editor preventing google from reading React pages
 https://github.com/sstur/react-rte/issues/200
+- Changing city - posts, events, places should be downloaded again
+- change isUpvoted logic - get for single post
+- When build is updated on hosting - client side does not know about it
+- Change font so that russian and english look the same Source Sans Pro,Sans-Serif
 
 
 SEO & Analytics
 - Add homepage, about us, events, places, categories, tags to sitemap
+- Access sitemaps from SPA
 - Structured data for beautiful google search results https://developers.google.com/search/docs/guides/intro-structured-data
 - Enable google search rich cards https://developers.google.com/search/docs/guides/search-gallery
 - Прописать ключевые слова
-- Track homepage tags clicks
+- Track Single post page links, share buttons, comments, upvotes, media lookups
+- Track new post funnel
+- Track collections
 - Setup goals
-- Check if user id is set on all pages
-- Check if city is set
 - Fix helmet duplicating header tags for all pages
 
 Performance
 https://developers.google.com/web/
 - Check performance when a lot of posts are loaded into memory
-- Split Actions, store
+- Split Actions, store into when user is not logged in, when user is logged in, admin, add new posts
 - Load some pages only load for authorized users (Loadable as on App.js)
 
 Search
+- Use postgrid
+- Mobile friendly version
+- Show tags
+- Pass to Algolia jsons as array in functions?
 - Design full search page layout - same as tags and collections
 - Search connector for Input
 - Connector for filter
 - Add filters - categories, date range, maker
 - Search only in name, only in tags
-- Add powered by Algolia
-- Thumbnail image
 - If event is checked - show data when event should be
 - If place is checked - show map?
 
 Tag page
-- Long list of posts
-- Same as подборки and search
-- Database - tags collection
+- Newsletter button
+- Upvote and comment button
 
-Поборки page
-- Same as tags page and search
-- Wylsacom design
+
+Подборки page
+- Implement lists for users
 
 Events calendar
-- Today widget on sidebar
-- Database structure
-  /events/date/posts/id {postRef}
+- Show by date or by tag
+- Show specific date
+- Day view, 3 day, week
 - Filter by tags
 - Подборки от пользователей
 - Add helmet title and meta for SEO
 
 Places page
 - Map of places
-- Database structure
-  /events/date/posts/id {postRef}
 - Подборки от пользователей
 - Add helmet title and meta for SEO
 
 Homepage
-- Bugs when there is no media - add default images for types
-- Make image clickable
+- Поменять алгоритм ленты на показ последних 24 часов
+- Hide sidebars on mobile, show them as popups/sidebars
 - Dates filter
 - Tags filter, popular tags
-- Add to list for authorized users
 - Limit number of tags
-- Hide sidebars on mobile, show them as popups/sidebars
-- Leave comment button -> open page, scroll to bottom, focus on text area
+- Add to list for authorized users
 - Collections widgets
+- Events widget
 - Recent Activity (comments, upvotes)
 - User ratings
 - Newsletter widget
-- Check the postlist component with different image sizings
 ------
 - Select city on top with icons (as on housing.com)
 - Disable upvote button visually
 - Remove focus from buttons when clicked
 
 Single Post page
-- Extract strings for types
+- Extract strings
 - Add cities applicable
 - Modal with users on mobile - make close icon floating
 - Microlink popup on mobile not closing
 - Report error in post/дополнить пост, список контрибьюторов
 --
+- Change architecture to get posts from common posts store and rely on props
 - Edit buttons for each field
 - Friends who upvoted
 - Add search results as additionally related
 - Report this post as inappropriate
 - Add related posts added by user
-- Disable upvote button visually
 - Make Modal version for homepage
-- Add to list button for authorized users
 - Add left/right buttons to Media tab
 - Add weather near dates
 
@@ -115,20 +120,20 @@ Comments
 - Mentions
 
 Admin
-- Limit access only to admins
+- Limit access only to admins https://angularfirebase.com/lessons/role-based-authorization-with-firestore-nosql-and-angular-5/
+https://firebase.google.com/docs/firestore/solutions/role-based-access
 - Comments moderation
 - Interesting stats (new users, number of posts)
 - Add user search
+- When editing/deleting posts - remove from tags, users, search, sitemap
+- Admin actions - extract from newpost
 
 New post page
-- Fix captcha - wait for answer then continue
+- Moderating posts broken
 - add maker field for hunter with user search, adding external links when there is no such user
 - link field - check http, add go to link button
-- make dates placeholders to today, do not allow end date more than start date
-- remove links from description
 - choose main image
 - Terms extract text into allStrings json
-- Fix wordings for all types
 - Do not allow new line
 - Text area emoji
 - Fix city label not turning red on error
@@ -138,19 +143,19 @@ New post page
 - Show unmoderated posts so that there are no duplicates
 - Send email about added post
 - Send email about post moderated or not
+- Send email about getting first like, 10th like, 100th like, reaching the top
+- Implement push notifications on moderation, likes, comments!
 - Add helmet title and meta for SEO
-- Check I am not a robot
 - Compress big images (>500 kb)
 - Failed to load image. No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+- Implement captcha?
 
 
 Profile page
-- Show hunter posts
-- Show maker posts
-- Show upvoted posts
-- Show comments
+- Load post names
 - Show saved lists (private and public)
 - Add helmet title and meta for SEO
+- Add statistics (number of upvotes, registered since, last seen on, number of comments...)
 
 Page not found
 - Add helmet title and meta for SEO

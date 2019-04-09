@@ -13,7 +13,7 @@
     "headers": [
      {
        "source": "/",
-       "headers": [{"key": "Link", "value": "<static/js/main.js>;rel=preload;as=script;nopush,<static/js/used-twice-main.chunk.js>;rel=preload;as=script;nopush,<static/css/main.css>;rel=preload;as=style;nopush,<static/js/3.chunk.js>;rel=preload;as=script;nopush,<static/js/6.chunk.js>;rel=preload;as=script;nopush,<static/media/lato-v14-latin-regular.woff2>;rel=preload;as=font;nopush,<static/media/icons.woff2>;rel=preload;as=font;nopush,<img/banner.jpg>;rel=preload;as=image;nopush, <https://www.google-analytics.com/analytics.js>;rel=preload;as=script;nopush"}]
+       "headers": [{"key": "Link", "value": "<static/js/main.js>;rel=preload;as=script;nopush,<static/css/main.css>;rel=preload;as=style;nopush,<static/js/3.chunk.js>;rel=preload;as=script;nopush,<static/js/6.chunk.js>;rel=preload;as=script;nopush,<static/media/lato-v14-latin-regular.woff2>;rel=preload;as=font;nopush,<static/media/icons.woff2>;rel=preload;as=font;nopush,<img/banner.jpg>;rel=preload;as=image;nopush, <https://www.google-analytics.com/analytics.js>;rel=preload;as=script;nopush"}]
      },
      {
        "source": "/post/**",

@@ -1,18 +1,63 @@
 {
-   "indexes": [
-     {
-       "collectionId": "posts",
-       "fields": [
-         { "fieldPath": "Almaty", "mode": "ASCENDING" },
-         { "fieldPath": "upvoteCount", "mode": "DESCENDING" }
-       ]
-     },
-     {
-       "collectionId": "posts",
-       "fields": [
-         { "fieldPath": "Astana", "mode": "ASCENDING" },
-         { "fieldPath": "upvoteCount", "mode": "DESCENDING" }
-       ]
-     }
-   ]
+  "indexes": [
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "city.Almaty", "mode": "ASCENDING" },
+        { "fieldPath": "publicationDate", "mode": "ASCENDING" },
+        { "fieldPath": "upvoteCount", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "city.Astana", "mode": "ASCENDING" },
+        { "fieldPath": "publicationDate", "mode": "ASCENDING" },
+        { "fieldPath": "upvoteCount", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "hunterID", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "posts",
+      "fields": [
+        { "fieldPath": "hunterID", "mode": "ASCENDING" },
+        { "fieldPath": "upvoteCount", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "userActivity",
+      "fields": [
+        { "fieldPath": "moderated", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "userActivity",
+      "fields": [
+        { "fieldPath": "postID", "mode": "ASCENDING" },
+        { "fieldPath": "type", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "userActivity",
+      "fields": [
+        { "fieldPath": "userID", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp", "mode": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionId": "userActivity",
+      "fields": [
+        { "fieldPath": "userID", "mode": "ASCENDING" },
+        { "fieldPath": "timestamp", "mode": "ASCENDING" }
+      ]
+    }
+  ]
 }

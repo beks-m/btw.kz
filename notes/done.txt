@@ -105,3 +105,59 @@ https://developers.google.com/web/fundamentals/performance/critical-rendering-pa
 - Microlink bug
 - Create dummy photos with different resolutions
 - Update add sample post
+Change database to contain all posts and their info in posts collection
+- Redo the database design
+- Create date collection with references to posts?
+- Create events collection with upvotes and comments
+- Redo the actions - new posts
+- Edit links to post everywhere (remove date)
+- manifest links
+- redo add posts - event dates as JSON, all arrays as JSON
+- tags - 2 jsons in post, one with timestamp, one with upvote count
+- eventDates - 2 jsons in post, one with startdate, one with upvote count.
+Problem with city when getting events
+- redo singlepostpage to support jsons
+- fix upvotes
+- Fix new post page
+- Save onDatesAlmaty, onDatesAstana
+{ 28-02-2018: upvoteCount }
+- update user's upvote count when adding upvote
+- update user's comment count when adding comment
+- finish save posts
+- upvotes write to onDates
+- make dates placeholders to today, do not allow end date more than start date
+- remove links from description
+- Single post: Make independent, get isUpvoted and upvotes by itself, keep only info on single post
+- isUpvoted: change for all posts, trigger action on button, extract into separate store
+- split Actions and Default Store
+- Track homepage tags clicks
+- Bug when searching map first (Azat)
+- Bug on dropzone when adding other types of files
+- Uploading new media and post broken
+- Move send to moderation button to somewhere more distinctive
+- Fix wordings for all types
+- Fix when there is no media - Cloud functions, helmet, single post page, homepage - add default media
+- Show upvoted posts
+- Show comments
+- Limit number of shown activity to 10
+- Show hunter posts
+- Show maker posts
+- Show editor posts
+- Bugs when there is no media - add default images for types
+- Make image clickable
+- Leave comment button -> open page, scroll to bottom, focus on text area
+- What about urls of russian tags
+- limit number of posts
+- Long list of posts
+- Same as подборки and search
+- Database - tags collection
+- Add powered by Algolia
+- Thumbnail image
+- Mobile menu
+- Check the postlist component with different image sizings
+- Add dates for timedPosts
+- Add tags
+- extract users store and redo getting users in single post
+- Check setting custom dimensions
+- Check if city is set
+- Check if user id is set on all pages

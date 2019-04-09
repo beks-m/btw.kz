@@ -1,40 +1,128 @@
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    //temporary rule for development
-    match /{document=**} {
-      allow read, write;
+    match /posts/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
+
+      // all users can read and update posts (to update upvote counts ~)
+      allow read, update: if true;
+
+      // only editors can create posts
+      allow create: if getRole('editor') == true;
+
+      // only admins can delete posts
+      allow delete: if getRole('admin') == true;
     }
 
-    // all users can read posts
-    match /posts/{document=**} {
-      allow read;
+    match /unmoderatedPosts/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
+
+      function isAuthor() {
+        return resource.data.hunterID == request.auth.uid;
+      }
+
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      // all users can read unmoderated posts (to prevent duplicates)
+      allow read: if true;
+
+      // only autorized users can create new posts
+      allow create: if isSignedIn() == true;
+
+      // only editors and authors can change posts
+      allow update: if getRole('editor') == true || isAuthor() == true;
+
+      // only editors can delete posts
+      allow delete: if getRole('editor') == true;
     }
 
-    // only admins can write to posts
+    match /moderatedPosts/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
 
-
-    // only authorized users can write to unmoderatedPosts
-
-
-    // only creators of posts and admins can edit posts
-
-
-    // only authorized users can upvote posts
-
-
-    // only authorized users can comment posts
-
-
-    // only the user can change its profile
-    match /users/{userId} {
-      allow write: if request.auth.uid == userId;
+      // only editors can do anything
+      allow read, create, update, delete: if getRole('editor') == true;
     }
 
-    // all users can read each other's profiles
+    match /deletedPosts/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
 
+      // only editors can do anything
+      allow read, create, update, delete: if getRole('editor') == true;
+    }
+
+    // upvotes and comments
+    match /userActivity/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
+
+      function isAuthor() {
+        return resource.data.userID == request.auth.uid;
+      }
+
+      function isSignedIn() {
+        return request.auth != null;
+      }
+
+      // all users can read
+      allow read: if true;
+
+      // only autorized users can create new
+      // TODO: need to update so that author is this signed in user
+      // TODO: if upvote - check that id is the same as authorID + postID
+      allow create: if isSignedIn() == true;
+
+      // only editors and authors can change user activity
+      allow update, delete: if getRole('editor') == true || isAuthor() == true;
+    }
+
+    match /users/{document} {
+
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
+
+      function isAuthor() {
+        return document == request.auth.uid && request.resource.data.keys().hasAny(['roles']) == false;
+      }
+
+      // all users can read each other's profiles
+      allow read: if true;
+
+      // anyone can create if there are no roles
+      allow create: if request.resource.data.keys().hasAny(['roles']) == false || getRole('admin') == true;
+
+      // only user can update if there are no roles
+      allow update: if isAuthor() == true || getRole('admin') == true;
+      allow delete: if getRole('admin') == true;
+    }
 
     // no one can read and write sitemap
+    match /sitemaps/{document} {
+      allow read, create, update, delete: if false;
+    }
+
+    // tags
+    match /tags/{document} {
+      function getRole(role) {
+        return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.roles[role];
+      }
+      allow read: if true;
+      allow create, update, delete: if getRole('editor') == true;
+    }
+
+
+    // collections
 
   }
 }
